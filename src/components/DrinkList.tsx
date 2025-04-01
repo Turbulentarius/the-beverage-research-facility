@@ -13,7 +13,7 @@ export default async function DrinkList () {
   const category = await getDrinks()
 
   return (
-    <ul className='grid grid-flow-rows grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4'>
+    <ul className='grid grid-flow-cols grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4'>
       {category.drinks.map((drink: Drink) => (
         <li key={drink.idDrink}>
           <div className="relative">
