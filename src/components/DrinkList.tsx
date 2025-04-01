@@ -13,9 +13,9 @@ export default async function DrinkList () {
   const category = await getDrinks()
 
   return (
-    <ul className='flex flex-wrap gap-4'>
+    <ul className='grid grid-flow-rows grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4'>
       {category.drinks.map((drink: Drink) => (
-        <li className='w-1/4 max-w-[15rem]' key={drink.idDrink}>
+        <li key={drink.idDrink}>
           <div className="relative">
             <div className='absolute z-1 inset-0 flex items-center justify-center bg-white/50'>
               <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-gray-400 border-solid'></div>
