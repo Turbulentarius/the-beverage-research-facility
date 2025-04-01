@@ -29,7 +29,7 @@ export default async function DrinkDetailPage ({
             src={`/api/thumb/${drink.idDrink}`}
             alt={drink.strDrink}
           />
-          <BuyButton drinkId={id} />
+          <BuyButton drink={drink} />
         </div>
         <div className='w-full pt-8'>
           <p>{drink.strInstructions}</p>
