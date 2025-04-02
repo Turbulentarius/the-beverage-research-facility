@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-  --xxs: 320px; 
-  --xs: 375px;
-}
-
 :root {
   --background: #fcfcfc;
   --foreground: #3d3d3d;
@@ -16,5 +11,5 @@ body {
 }
 
 .siteLogo svg { 
-  @apply aspect-square block h-full text-gray-950;
+  @apply aspect-square block h-full mx-auto sm:mx-4 text-gray-950;
 }
