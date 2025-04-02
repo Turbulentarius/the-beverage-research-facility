@@ -1,5 +1,6 @@
 'use client'
 
+import { ChaoticCurrency } from '@/lib/types/ChaoticCurrency'
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
 interface CartContextType {
@@ -14,7 +15,7 @@ interface CartContextType {
 interface CartItem {
   idDrink: string
   strDrink: string
-  price: number
+  price: ChaoticCurrency
   quantity: number
 }
 
