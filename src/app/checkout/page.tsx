@@ -5,7 +5,7 @@ import CartIsEmptyMsg from '@/components/CartIsEmptyMsg'
 import Link from 'next/link'
 
 export default function CheckoutPage () {
-  const { cartItems } = useCart()
+  const { cartItems, clearCart } = useCart()
 
   // Calculate total
   let grossTotal = 0
@@ -38,15 +38,22 @@ export default function CheckoutPage () {
         <CartIsEmptyMsg />
         <ul className='space-y-2 mb-4'>
           {cartItems.map(item => (
-            <li key={item.idDrink} className='flex border-t border-gray-300 justify-between'>
+            <li
+              key={item.idDrink}
+              className='flex border-t border-gray-300 justify-between text-right'
+            >
               <span>
                 {item.strDrink} × {item.quantity}
               </span>
               <span>
                 {(item.price.gross * item.quantity).toFixed(2)}
-                <span className='text-sm block'>
-                  {item.price.gross.toFixed(2)} / unit
-                </span>
+                {item.price.gross !== item.price.gross * item.quantity ? (
+                  <span className='text-sm block'>
+                    {item.price.gross.toFixed(2)} / unit
+                  </span>
+                ) : (
+                  ''
+                )}
               </span>
             </li>
           ))}
@@ -63,10 +70,33 @@ export default function CheckoutPage () {
         </div>
         <div className='flex justify-between pt-2 text-sm'>
           <span>VAT {vat}%</span>
-          <span>
-            {(grossTotal - netTotal).toFixed(2)}
-          </span>
+          <span>{(grossTotal - netTotal).toFixed(2)}</span>
         </div>
+        {cartItems.length > 0 ? (
+          <Link
+            href={`/payment`}
+            className='text-white bg-green-500 hover:bg-green-400 my-2 cursor-pointer font-medium rounded-sm text-sm px-2 py-1 text-center inline-flex items-center me-2'
+            onClick={clearCart}
+          >
+            Payment
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth='1.5'
+              stroke='currentColor'
+              className='size-6 inline-block'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3'
+              />
+            </svg>
+          </Link>
+        ) : (
+          ''
+        )}
       </div>
     </>
   )

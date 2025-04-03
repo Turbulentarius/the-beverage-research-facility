@@ -99,12 +99,17 @@ const Cart = () => {
               </div>
               <div className='text-right'>
                 <div>
-                  {item.price.gross.toFixed(2)} {item.price.currency}{' '}
-                  <span className='text-sm'>/ unit</span>
+                  {(item.price.gross * item.quantity).toFixed(2)}{' '}
+                  {item.price.currency}
                 </div>
-                <div>
-                  {(item.price.gross * item.quantity).toFixed(2)} {item.price.currency}
-                </div>
+                {item.price.gross !== item.price.gross * item.quantity ? (
+                  <div>
+                    {item.price.gross.toFixed(2)} {item.price.currency}{' '}
+                    <span className='text-sm'>/ unit</span>
+                  </div>
+                ) : (
+                  ' '
+                )}
               </div>
             </li>
           ))}
