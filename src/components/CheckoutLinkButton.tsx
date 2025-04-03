@@ -10,9 +10,7 @@ export default function CheckoutLinkButton () {
   if (cartItems.length < 1) return null
 
   const pathname = usePathname()
-  if (pathname === '/checkout') {
-    return
-  }
+  if (pathname === '/checkout') return null
 
   return (
     <Link
