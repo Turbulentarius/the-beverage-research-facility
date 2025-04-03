@@ -1,0 +1,33 @@
+name: Deploy the Chaotic Beverage Research Facility
+
+on:
+  push:
+    branches:
+      - deploy
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+
+    permissions:
+      id-token: write  # Required for deployment authentication
+      pages: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+        # If any node modules are needed, they should be installed in this step
+      - name: Install Dependencies
+        run: npm install || echo "No dependencies to install"
+
+        # Ensure the built .CSS is always up-to-date
+        # This step builds my css to build/css/main.css
+        # but for some reason it is not deploying this file unless the entire build folder is
+        # included in github
+      - name: Build CSS before deploying
+        run: npm run build
+        # .... More to come later
