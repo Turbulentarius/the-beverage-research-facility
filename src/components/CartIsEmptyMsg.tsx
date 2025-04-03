@@ -1,6 +1,5 @@
 'use client'
 import { useCart } from '@/context/CartContext'
-import { useRef } from 'react'
 
 const CartIsEmptyMsg = () => {
   const { cartItems } = useCart()
