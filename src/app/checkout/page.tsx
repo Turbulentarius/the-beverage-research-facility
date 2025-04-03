@@ -76,7 +76,6 @@ export default function CheckoutPage () {
           <Link
             href={`/payment`}
             className='text-white bg-green-500 hover:bg-green-400 my-2 cursor-pointer font-medium rounded-sm text-sm px-2 py-1 text-center inline-flex items-center me-2'
-            onClick={clearCart}
           >
             Payment
             <svg
