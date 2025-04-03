@@ -107,7 +107,7 @@ const Cart = () => {
           ))}
         </ul>
         <div className='w-56 grid grid-flow-row text-red-500'>
-          <h2 className='text-gray-950 text-xl pb-2'>Total:</h2>
+          <h2 className='text-gray-950 text-xl mt-2 bg-amber-300 rounded-sm p-2'>Total:</h2>
           <div>
             {grossTotal} {currency}
           </div>
