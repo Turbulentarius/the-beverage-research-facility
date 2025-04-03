@@ -1,9 +1,12 @@
 'use client'
 
-// Solution: I moved the handling of notiffications to this separate CartNotificationsContext, and additionally added a
+// Solution: I moved the handling of notifications to this separate CartNotificationsContext, and additionally added a
 //           (fresh.length === prev.length) optimization to
 //           avoid triggering constant re-evaluation of consumer components (users of CartNotificationsContext) elsewhere.
-//           E.g. React doesn't even have to do virtual DOM diffing unless a notification is added.
+//           E.g., React doesn't even have to do virtual DOM diffing unless a notification is added.
+//
+// This should theoretically result in less battery drain on users' devices.
+// The added if() optimization replaces a more expensive virtual DOM diff with a single, simple if statement.
 
 import React, {
   createContext,
