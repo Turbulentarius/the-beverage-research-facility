@@ -9,7 +9,7 @@ export default function CartButton () {
   return (
     <button
       type='button'
-      className='text-white bg-black hover:bg-gray-800 mb-4 cursor-pointer font-medium rounded-sm text-sm px-4 py-2 text-center inline-flex items-center me-2'
+      className='text-white bg-black hover:bg-gray-800 mb-4 cursor-pointer font-medium rounded-sm text-sm px-2 py-1 text-center inline-flex items-center me-2'
       onClick={toggleCart}
     >
       <svg
