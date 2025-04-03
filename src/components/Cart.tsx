@@ -6,6 +6,8 @@ import CartIsEmptyMsg from '@/components/CartIsEmptyMsg'
 import ChaoticLogo from '@/assets/chaotic-beverage-research-logo.svg'
 import { headFont, openSans } from '@/lib/fonts'
 import ClearCartButton from '@/components/ClearCartButton'
+import CloseCartButton from '@/components/CloseCartButton'
+import Link from 'next/link'
 
 const Cart = () => {
   // Access cart state in isCartOpen, cartItems contains the individual objects
@@ -90,35 +92,75 @@ const Cart = () => {
               className='border-b border-gray-300 pb-1 grid grid-flow-row-dense grid-cols-2'
             >
               <div className='col-end-2'>
-                <div className='font-semibold'>{item.strDrink}</div>
-                <div className='text-sm text-gray-700'>
-                  Quantity: <b>{item.quantity}</b>
+                <div className='font-semibold'>
+                  {item.strDrink}{' '}
+                  <span className='text-sm'>x {item.quantity}</span>
                 </div>
               </div>
               <div className='text-right'>
                 <div>
-                  {item.price.gross} {item.price.currency}{' '}
+                  {item.price.gross.toFixed(2)} {item.price.currency}{' '}
                   <span className='text-sm'>/ unit</span>
                 </div>
                 <div>
-                  {item.price.gross * item.quantity} {item.price.currency}
+                  {(item.price.gross * item.quantity).toFixed(2)} {item.price.currency}
                 </div>
               </div>
             </li>
           ))}
         </ul>
-        <div className='w-56 grid grid-flow-row text-red-500'>
+        <div className='w-56 grid grid-flow-row'>
           <h2 className='text-gray-950 text-xl mt-2 bg-amber-300 rounded-sm p-2'>
             Total:
           </h2>
+          <div className='flex justify-between pt-2'>
+            <span></span>
+            <span className='text-red-500'>
+              {currency} {grossTotal.toFixed(2)}
+            </span>
+          </div>
+          <div className='flex justify-between pt-2'>
+            <span>Excluding VAT</span>
+            <span>{netTotal.toFixed(2)}</span>
+          </div>
+          <div className='flex justify-between pt-2 text-sm'>
+            <span>VAT {vat}%</span>
+            <span>{(grossTotal - netTotal).toFixed(2)}</span>
+          </div>
+          <div className='pt-4'>
+            {cartItems.length > 0 ? (
+              <Link
+                href={`/checkout`}
+                className='text-white bg-green-500 hover:bg-green-400 my-2 cursor-pointer font-medium rounded-sm text-sm px-2 py-1 text-center inline-flex items-center me-2'
+                onClick={toggleCart}
+              >
+                Checkout
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth='1.5'
+                  stroke='currentColor'
+                  className='size-6 inline-block'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3'
+                  />
+                </svg>
+              </Link>
+            ) : (
+              ''
+            )}
+          </div>
+        </div>
+        <div className='flex flex-wrap justify-center'>
           <div>
-            {grossTotal} {currency}
-          </div>
-          <div className='text-gray-950 text-sm'>
-            {netTotal} {currency} without VAT ({vat}%)
-          </div>
-          <div className="pt-4">
             <ClearCartButton />
+          </div>
+          <div>
+            <CloseCartButton />
           </div>
         </div>
       </div>
