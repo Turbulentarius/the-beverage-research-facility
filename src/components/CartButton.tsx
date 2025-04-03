@@ -2,9 +2,13 @@
 
 import React from 'react'
 import { useCart } from '@/context/CartContext'
+import { usePathname } from 'next/navigation'
 
 export default function CartButton () {
   const { toggleCart } = useCart()
+
+  const pathname = usePathname()
+  if (pathname === '/checkout') return null
 
   return (
     <button
