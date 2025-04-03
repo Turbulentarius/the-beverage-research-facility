@@ -23,7 +23,6 @@ interface CartNotificationsContextType {
 
 interface CartNotification {
   notificationId: string
-  idDrink: string
   msg: string
   timestamp: Date
 }
