@@ -3,15 +3,14 @@
 import React, { useEffect, useRef } from 'react'
 import { useCart } from '@/context/CartContext'
 import CartIsEmptyMsg from '@/components/CartIsEmptyMsg'
-import ChaoticLogo from '@/assets/chaotic-beverage-research-logo.svg'
 import { headFont, openSans } from '@/lib/fonts'
 import ClearCartButton from '@/components/ClearCartButton'
+import CheckoutLinkButton from '@/components/CheckoutLinkButton'
 import CloseCartButton from '@/components/CloseCartButton'
-import Link from 'next/link'
 
 const Cart = () => {
   // Access cart state in isCartOpen, cartItems contains the individual objects
-  const { isCartOpen, toggleCart, clearCart, cartItems } = useCart()
+  const { isCartOpen, toggleCart, cartItems } = useCart()
 
   const cartRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
@@ -149,31 +148,7 @@ const Cart = () => {
             <span>{(grossTotal - netTotal).toFixed(2)}</span>
           </div>
           <div className='pt-4'>
-            {cartItems.length > 0 ? (
-              <Link
-                href={`/checkout`}
-                className='text-white bg-green-500 hover:bg-green-400 my-2 cursor-pointer font-medium rounded-sm text-sm px-2 py-1 text-center inline-flex items-center me-2'
-                onClick={toggleCart}
-              >
-                Checkout
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth='1.5'
-                  stroke='currentColor'
-                  className='size-6 inline-block'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3'
-                  />
-                </svg>
-              </Link>
-            ) : (
-              ''
-            )}
+            <CheckoutLinkButton />
           </div>
         </div>
         <div className='flex flex-wrap justify-center'>

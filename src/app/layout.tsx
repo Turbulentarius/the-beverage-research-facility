@@ -8,6 +8,7 @@ import Cart from '@/components/Cart'
 import './globals.css'
 import { headFont, openSans } from '@/lib/fonts'
 import Link from 'next/link'
+import CheckoutLinkButton from '@/components/CheckoutLinkButton'
 
 export const metadata: Metadata & { title: string; description: string } = {
   title: 'The Chaotic Beverage Research Facility',
@@ -41,26 +42,7 @@ export default function RootLayout ({
                 </div>
                 <div className='sm:ml-auto float-right'>
                   <CartButton />
-                  <Link
-                    href={`/checkout`}
-                    className='text-white bg-green-500 hover:bg-green-400 mb-4 cursor-pointer font-medium rounded-sm text-sm px-2 py-1 text-center inline-flex items-center leading-none align-middle'
-                  >
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      strokeWidth={1.5}
-                      stroke='currentColor'
-                      className='size-6'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='m4.5 12.75 6 6 9-13.5'
-                      />
-                    </svg>
-                    Checkout
-                  </Link>
+                  <CheckoutLinkButton />
                 </div>
               </header>
               <main className='w-full max-w-[70rem] min-w-[320px] mx-auto'>
