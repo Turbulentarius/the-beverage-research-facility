@@ -17,7 +17,7 @@ export default async function DrinkDetailPage ({
         href='/'
         className='text-l text-blue-600 hover:underline mb-4 inline-block'
       >
-        ← Back to Drinks
+        ← Drinks
       </Link>
       <div className='flex flex-row-reverse gap-4'>
         <div className='bg-gray-100 rounded-sm px-4'>
