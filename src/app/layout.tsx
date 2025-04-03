@@ -7,6 +7,7 @@ import CartNotifications from '@/components/CartNotifications'
 import Cart from '@/components/Cart'
 import './globals.css'
 import { headFont, openSans } from '@/lib/fonts'
+import Link from 'next/link'
 
 export const metadata: Metadata & { title: string; description: string } = {
   title: 'The Chaotic Beverage Research Facility',
@@ -26,7 +27,7 @@ export default function RootLayout ({
             <div className='w-[90%] mx-auto'>
               <header className='w-full max-w-[70rem] min-w-[320px] h-auto sm:h-40 mx-auto sm:flex sm:items-end my-4 p-4 bg-amber-300 rounded-sm text-gray-950'>
                 <div className='siteLogo h-32 lg:h-full sm:float-none'>
-                  <ChaoticLogo />
+                <Link href={`/`}><ChaoticLogo /></Link>
                 </div>
                 <div className='pb-4 sm:float-none'>
                   <div
