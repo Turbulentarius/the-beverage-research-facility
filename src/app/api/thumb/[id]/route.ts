@@ -9,7 +9,7 @@ I dislike proxying because it adds unnecessary overhead up front.
 Instead of a single request for the image, we introduce three HTTP requests:
  - One for the proxy endpoint
  - One for the product details
- - One for the actual image (by out proxy at thumb/[id]/route.ts)
+ - One for the actual image (by our proxy at thumb/[id]/route.ts)
 
 However, this overhead is mitigated by the following:
  - The Next.js <Image> component caches images locally
@@ -32,7 +32,7 @@ export async function GET(
       status: 200,
       headers: {
         "Content-Type": contentType,
-        "Cache-Control": "public, immutable, max-age=31536000", // Response will never change, don't revalidate
+        "Cache-Control": "public, immutable, max-age=31536000", // Response will never change, don't revalidate (<Image> will obay this)
       },
     })
   } catch {
