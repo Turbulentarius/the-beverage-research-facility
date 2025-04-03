@@ -5,7 +5,7 @@ import CartIsEmptyMsg from '@/components/CartIsEmptyMsg'
 import Link from 'next/link'
 
 export default function CheckoutPage () {
-  const { cartItems, clearCart } = useCart()
+  const { cartItems } = useCart()
 
   // Calculate total
   let grossTotal = 0
