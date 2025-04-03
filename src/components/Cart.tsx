@@ -16,6 +16,7 @@ const Cart = () => {
   const cartRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
     if (isCartOpen) {
+      document.body.style.overflow = 'hidden'
       document.addEventListener('mousedown', (event: MouseEvent) => {
         // If someone clicks outside the cart, close it
         // console.log(event.target)
@@ -35,6 +36,8 @@ const Cart = () => {
           toggleCart()
         }
       })
+    } else {
+      document.body.style.overflow = ''
     }
 
     // Cleanup event listeners when cart is closed
@@ -45,7 +48,7 @@ const Cart = () => {
   }, [isCartOpen, toggleCart])
 
   // Don't render if cart is closed
-  if (!isCartOpen) return null
+  if (!isCartOpen) return
 
   // Calculate total
   let grossTotal = 0
@@ -66,14 +69,27 @@ const Cart = () => {
   }
 
   return (
-    <div className='fixed w-screen h-screen z-2 top-0 left-0 flex items-center justify-center'>
+    <div className='absolute w-screen min-h-screen z-2 top-0 left-0 flex items-center justify-center backdrop-blur-xs'>
       <div
         ref={cartRef}
-        className='bg-white shadow-lg px-2 z-3 py-1 w-full max-w-[70rem] h-full rounded-sm'
+        className='bg-white shadow-lg px-2 z-3 py-1 w-full max-w-[70rem] max-h-screen rounded-sm'
       >
         <div className='h-28'>
-          <div className='siteLogo h-full w-fit mx-auto'>
-            <ChaoticLogo />
+          <div className='h-28 w-28 mx-auto'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className='size-6 h-full w-full'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z'
+              />
+            </svg>
           </div>
         </div>
         <div className='inline-flex items-center justify-center w-full'>
@@ -85,7 +101,7 @@ const Cart = () => {
           </h2>
         </div>
         <CartIsEmptyMsg />
-        <ul className='space-y-2'>
+        <ul className='space-y-2 overflow-y-scroll max-h-96'>
           {cartItems.map((item, index) => (
             <li
               key={index}

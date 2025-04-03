@@ -26,7 +26,7 @@ export default function BuyButton ({ drink }: { drink: Drink }) {
       </div>
       <button
         type='button'
-        className='text-white bg-green-500 hover:bg-green-400 my-2 cursor-pointer font-medium rounded-sm text-sm px-2 py-1 text-center inline-flex items-center me-2'
+        className='text-white bg-green-500 hover:bg-green-400 my-2 cursor-pointer font-medium rounded-sm text-sm p-2 text-center inline-flex items-center me-2 leading-none align-middle'
         onClick={() => {
           addToCart(drink)
           addNotification({
