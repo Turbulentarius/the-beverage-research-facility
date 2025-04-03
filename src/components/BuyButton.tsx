@@ -31,7 +31,6 @@ export default function BuyButton ({ drink }: { drink: Drink }) {
           addToCart(drink)
           addNotification({
             notificationId: crypto.randomUUID(),
-            idDrink: drink.idDrink,
             msg: '+1 ' + ' ' + drink.strDrink,
             timestamp: new Date()
           })
