@@ -1,7 +1,8 @@
 'use client'
 import { useCart } from '@/context/CartContext'
+import { useRef } from 'react'
 
-const EmptyCart = () => {
+const CartIsEmptyMsg = () => {
   const { cartItems } = useCart()
 
   if (cartItems.length > 0) return null
@@ -16,9 +17,11 @@ const EmptyCart = () => {
     'Hogwash'
   ] as const
 
-  const cartIsEmpty =
-    outBursts[Math.floor(Math.random() * outBursts.length)] +
-    ' — the cart is empty!'
+  // Problem: This small "just-for-fun" part of my code was re-evaluated every 250ms because of a setTimeout for clearing expired notifications,
+  //          located in the CartContext at the time (now moved to separate CartNotificationsContext).
+  const pickedMsg = Math.floor(Math.random() * outBursts.length)
+
+  const cartIsEmpty = outBursts[pickedMsg] + ' — the cart is empty!'
 
   return (
     <div
@@ -37,4 +40,4 @@ const EmptyCart = () => {
   )
 }
 
-export default EmptyCart
+export default CartIsEmptyMsg
