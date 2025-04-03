@@ -1,10 +1,12 @@
 'use client'
 
 import { useCart } from '@/context/CartContext'
+import { useCartNotifications } from '@/context/CartNotificationsContext'
 import { Drink } from '@/lib/types/Drink'
 
 export default function BuyButton ({ drink }: { drink: Drink }) {
-  const { addToCart, toggleCart, addNotification } = useCart()
+  const { addToCart, toggleCart } = useCart()
+  const { addNotification } = useCartNotifications()
 
   // Add missing price. It's also missing on the API
   // so I just add this placeholder price to have something to test with
