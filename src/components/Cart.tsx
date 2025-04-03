@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react'
 import { useCart } from '@/context/CartContext'
-import EmptyCart from '@/components/EmptyCart'
+import CartIsEmptyMsg from '@/components/CartIsEmptyMsg'
 import ChaoticLogo from '@/assets/chaotic-beverage-research-logo.svg'
 import { headFont, openSans } from '@/lib/fonts'
 
@@ -81,7 +81,7 @@ const Cart = () => {
             Cart
           </h2>
         </div>
-        <EmptyCart />
+        <CartIsEmptyMsg />
         <ul className='space-y-2'>
           {cartItems.map((item, index) => (
             <li
