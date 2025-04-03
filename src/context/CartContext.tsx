@@ -1,15 +1,19 @@
 'use client'
 
 import { ChaoticCurrency } from '@/lib/types/ChaoticCurrency'
-import React, { createContext, useContext, useState, ReactNode } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect
+} from 'react'
 
 interface CartContextType {
   isCartOpen: boolean
   toggleCart: () => void
   addToCart: (item: CartItem) => void
   cartItems: CartItem[]
-  cartNotifications: CartNotification[]
-  addNotification: (notification: CartNotification) => void
 }
 
 interface CartItem {
@@ -17,13 +21,6 @@ interface CartItem {
   strDrink: string
   price: ChaoticCurrency
   quantity: number
-}
-
-interface CartNotification {
-  idDrink: string
-  quantity: number
-  msg: string
-  timestamp: Date
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -43,7 +40,6 @@ interface CartProviderProps {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false) // useState always returns an array of exactly two elements
   const [cartItems, setCartItems] = useState<CartItem[]>([])
-  const [cartNotifications, setCartNotifications] = useState<CartNotification[]>([])
 
   const addToCart = (item: CartItem) => {
     // Take the previous value of the cart. E.g. cartItems (either empty or not),
@@ -61,20 +57,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     })
   }
 
-  const addNotification = (notification: CartNotification) => {
-    setCartNotifications(prev => {
-      const existingItem = prev.find(i => i.idDrink === notification.idDrink)
-      if (existingItem) {
-        return prev.map(i =>
-          i.idDrink === notification.idDrink ? { ...i, quantity: i.quantity + 1 } : i
-        )
-      } else {
-        return [...prev, { ...notification, quantity: 1 }]
-      }
-    })
-
-  }
-
   const toggleCart = () => {
     setIsCartOpen(prevState => {
       return !prevState
@@ -84,7 +66,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   // The children is fetched from the layout.tsx, so it's extremely convoluted.
   return (
     <CartContext.Provider
-      value={{ isCartOpen, toggleCart, addToCart, cartItems, cartNotifications, addNotification }}
+      value={{
+        isCartOpen,
+        toggleCart,
+        addToCart,
+        cartItems
+      }}
     >
       {children}
     </CartContext.Provider>
