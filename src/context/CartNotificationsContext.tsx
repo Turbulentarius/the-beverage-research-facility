@@ -22,8 +22,8 @@ interface CartNotificationsContextType {
 }
 
 interface CartNotification {
+  notificationId: string
   idDrink: string
-  quantity: number
   msg: string
   timestamp: Date
 }
@@ -51,11 +51,8 @@ export const CartNotificationsProvider = ({
     CartNotification[]
   >([])
 
-  const addNotification = (
-    notification: Omit<CartNotification, 'timestamp'>
-  ) => {
-    const timestamped = { ...notification, timestamp: new Date() }
-    setCartNotifications(prev => [...prev, timestamped])
+  const addNotification = (notification: CartNotification) => {
+    setCartNotifications(prev => [...prev, notification])
   }
 
   useEffect(() => {

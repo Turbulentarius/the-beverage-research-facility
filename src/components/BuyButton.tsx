@@ -26,12 +26,12 @@ export default function BuyButton ({ drink }: { drink: Drink }) {
       </div>
       <button
         type='button'
-        className='text-white bg-green-500 hover:bg-green-800 my-2 cursor-pointer font-medium rounded-sm text-sm px-4 py-1 text-center inline-flex items-center me-2'
+        className='text-white bg-green-500 hover:bg-green-800 my-2 cursor-pointer font-medium rounded-sm text-sm px-2 py-1 text-center inline-flex items-center me-2'
         onClick={() => {
           addToCart(drink)
           addNotification({
+            notificationId: crypto.randomUUID(),
             idDrink: drink.idDrink,
-            quantity: 1,
             msg: '+1 ' + ' ' + drink.strDrink,
             timestamp: new Date()
           })
