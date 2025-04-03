@@ -12,6 +12,7 @@ import React, {
 interface CartContextType {
   isCartOpen: boolean
   toggleCart: () => void
+  clearCart: () => void
   addToCart: (item: CartItem) => void
   cartItems: CartItem[]
 }
@@ -63,12 +64,17 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     })
   }
 
+  const clearCart = () => {
+    setCartItems([])
+  }
+
   // The children is fetched from the layout.tsx, so it's extremely convoluted.
   return (
     <CartContext.Provider
       value={{
         isCartOpen,
         toggleCart,
+        clearCart,
         addToCart,
         cartItems
       }}
