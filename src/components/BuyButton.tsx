@@ -5,7 +5,7 @@ import { useCartNotifications } from '@/context/CartNotificationsContext'
 import { Drink } from '@/lib/types/Drink'
 
 export default function BuyButton ({ drink }: { drink: Drink }) {
-  const { addToCart, toggleCart } = useCart()
+  const { addToCart } = useCart()
   const { addNotification } = useCartNotifications()
 
   // Add missing price. It's also missing on the API
