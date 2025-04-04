@@ -33,3 +33,7 @@ jobs:
           source: ".next,public,package.json,package-lock.json"
           target: "/home/deploybot/cbrf-turbulentarius"
           rm: true
+
+      - name: Trigger secure deployment on server
+        run: ssh -i ${{ secrets.SSH_PRIVATE_KEY }} deploybot@65.21.241.43 'touch /home/deploybot/cbrf-turbulentarius/pending-deployment'
+        
