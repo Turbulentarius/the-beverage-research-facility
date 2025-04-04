@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useCart } from '@/context/CartContext'
 import CartIsEmptyMsg from '@/components/CartIsEmptyMsg'
-import { headFont, openSans } from '@/lib/fonts'
+import { headFont } from '@/lib/fonts'
 import ClearCartButton from '@/components/ClearCartButton'
 import CheckoutLinkButton from '@/components/CheckoutLinkButton'
 import CloseCartButton from '@/components/CloseCartButton'
