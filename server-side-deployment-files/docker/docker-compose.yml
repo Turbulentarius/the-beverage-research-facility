@@ -1,0 +1,32 @@
+services:
+  exonext-main:
+    container_name: exonext-main
+    build:
+      context: ./
+      dockerfile: ./nextjs.dockerfile
+    image: exonext-main
+    labels:
+      traefik.enable: true
+      traefik.http.routers.cbrf.entryPoints: 'web'
+      traefik.http.routers.cbrf.rule: 'Host(`cbrf.turbulentarius.com`)'
+      traefik.http.middlewares.cbrf-redirect.redirectscheme.scheme: 'https'
+      traefik.http.middlewares.cbrf-redirect.redirectscheme.permanent: true
+      traefik.http.routers.cbrf.middlewares: 'cbrf_redirectregex, cbrf-redirect, exoheaders'
+      traefik.http.routers.cbrf-secure.entryPoints: 'websecure'
+      traefik.http.routers.cbrf-secure.rule: 'Host(`cbrf.turbulentarius.com`)'
+      traefik.http.routers.cbrf-secure.tls: true
+      traefik.http.routers.cbrf-secure.tls.certresolver: 'letsencrypt'
+      traefik.http.middlewares.cbrf_redirectregex.redirectregex.permanent: true
+      traefik.http.middlewares.exoheaders.headers.stsSeconds: 15552000
+      traefik.http.middlewares.exoheaders.headers.forceSTSHeader: true
+      traefik.http.services.cbrf.loadbalancer.server.port: 3000
+    expose:
+      - 3000
+    networks:
+      - exo_network_external
+    # volumes:  ← not needed, because we move everything into the container when it starts
+    #  - ./host-www:/srv/sandboxer
+    restart: unless-stopped
+networks:
+  exo_network_external:
+    name: exo_network_external

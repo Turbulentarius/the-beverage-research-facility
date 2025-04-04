@@ -1,0 +1,15 @@
+services:
+  exonext-main:
+    container_name: exonext-main
+    build:
+      context: ./
+      dockerfile: ./nextjs.dockerfile
+    image: exonext-main
+    ports:
+      - "3000:3000" # Make the container available on http://localhost:3000/
+    networks:
+      - sandboxer
+    restart: unless-stopped
+networks:
+    sandboxer:
+        driver: bridge

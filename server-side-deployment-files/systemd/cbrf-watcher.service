@@ -1,0 +1,14 @@
+[Unit]
+Description=The Watcher of the Sigil
+After=network.target docker.service exoplan.service
+Requires=docker.service exoplan.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/cbrf-turbulentarius-deployer.sh
+Restart=always
+RestartSec=5s
+User=root
+
+[Install]
+WantedBy=multi-user.target
