@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React from 'react'
 import Link from 'next/link'
@@ -7,10 +7,11 @@ import { usePathname } from 'next/navigation'
 
 export default function CheckoutLinkButton () {
   const { cartItems, isCartOpen, toggleCart } = useCart()
-  if (cartItems.length < 1) return null
 
   const pathname = usePathname()
   if (pathname === '/checkout') return null
+
+  if (cartItems.length < 1) return null
 
   return (
     <Link

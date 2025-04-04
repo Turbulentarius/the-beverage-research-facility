@@ -5,8 +5,8 @@ import { useCartNotifications } from '@/context/CartNotificationsContext'
 
 export default function ClearCartButton () {
   const { clearCart, cartItems } = useCart()
-  if (cartItems.length < 1) return null
   const { addNotification } = useCartNotifications()
+  if (cartItems.length < 1) return null
 
   return (
     <>
