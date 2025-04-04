@@ -5,8 +5,7 @@ import React, {
   createContext,
   useContext,
   useState,
-  ReactNode,
-  useEffect
+  ReactNode
 } from 'react'
 
 interface CartContextType {
