@@ -35,5 +35,10 @@ jobs:
           rm: true
 
       - name: Trigger secure deployment on server
-        run: ssh -i ${{ secrets.SSH_PRIVATE_KEY }} deploybot@65.21.241.43 'touch /home/deploybot/cbrf-turbulentarius/pending-deployment'
+        uses: appleboy/ssh-action@v1.0.3  
+        with:
+          host: 65.21.241.43
+          username: deploybot
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: touch /home/deploybot/cbrf-turbulentarius/pending-deployment
         
